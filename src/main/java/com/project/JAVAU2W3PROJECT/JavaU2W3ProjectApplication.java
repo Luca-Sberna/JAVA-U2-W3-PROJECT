@@ -20,9 +20,16 @@ public class JavaU2W3ProjectApplication {
 
 		System.out.println("Settaggio del livello di fumo a 3");
 		smokeDetector.setSmokeLevel(3);
+
 		System.out.println("");
+
 		System.out.println("Settaggio del livello di fumo a 6");
 		smokeDetector.setSmokeLevel(6);
+
+		System.out.println("");
+
+		System.out.println("Settaggio del livello di fumo a 10");
+		smokeDetector.setSmokeLevel(10);
 	}
 
 }

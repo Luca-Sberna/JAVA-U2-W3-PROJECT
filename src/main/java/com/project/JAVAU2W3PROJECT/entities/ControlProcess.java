@@ -26,9 +26,12 @@ public class ControlProcess implements ObserverSmokeControl {
 	public void update(double smokeLevel) {
 		System.out.println("Ricevuto aggiornamento dalla " + idSonda + ": livello di fumo = " + smokeLevel);
 		fireAlarmControl.triggerAlarm(idSonda, latitudine, longitudine, smokeLevel);
-		if (smokeLevel > 5) {
+		if (smokeLevel >= 10) {
+			System.out.println("Sonda allarmata: " + idSonda
+					+ " Livello mai registrato riunire tutte le forze, non è un esercitazione!");
+		} else if (smokeLevel > 5) {
 			System.out.println("Sonda allarmata: " + idSonda + " Preparasi all'emergenza!");
-		} else {
+		} else if (smokeLevel <= 4) {
 			System.out.println("Sonda allarmata: " + idSonda + " Rimanere in allerta!");
 		}
 	}
