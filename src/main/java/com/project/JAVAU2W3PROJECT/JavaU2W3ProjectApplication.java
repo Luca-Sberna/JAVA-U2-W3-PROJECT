@@ -47,6 +47,7 @@ public class JavaU2W3ProjectApplication {
 		smokeDetector1.setSmokeLevel(0);
 
 		System.out.println("");
+		System.out.println("**** SECONDA SONDA ****");
 		System.out.println("");
 
 		System.out.println("Settaggio del livello di fumo a 1");
