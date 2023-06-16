@@ -37,7 +37,8 @@ public class SmokeDetector implements GestioneCentroAssistenza {
 		}
 	}
 
-	public void setSmokeLevel(double smokeLevel) throws SensorFailureException, CommunicationFailureException {
+	public void setSmokeLevel(Sonda sonda, double smokeLevel)
+			throws SensorFailureException, CommunicationFailureException {
 		if (smokeLevel < 0) {
 			throw new SensorFailureException("Livello di fumo non valido controllare sensore: " + smokeLevel);
 		}
