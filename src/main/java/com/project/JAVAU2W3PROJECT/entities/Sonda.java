@@ -7,14 +7,14 @@ import com.project.JAVAU2W3PROJECT.proxies.FireAlarmControlProxy;
 import lombok.Data;
 
 @Data
-public class ControlProcess implements ObserverSmokeControl {
+public class Sonda implements ObserverSmokeControl {
 	private SmokeDetector smokeDetector;
 	private String idSonda;
 	private double latitudine;
 	private double longitudine;
 	private FireAlarmControl fireAlarmControl;
 
-	public ControlProcess(SmokeDetector smokeDetector, String idSonda, double latitudine, double longitudine) {
+	public Sonda(SmokeDetector smokeDetector, String idSonda, double latitudine, double longitudine) {
 		this.smokeDetector = smokeDetector;
 		this.idSonda = idSonda;
 		this.latitudine = latitudine;
@@ -26,6 +26,7 @@ public class ControlProcess implements ObserverSmokeControl {
 	public void update(double smokeLevel) {
 		System.out.println("Ricevuto aggiornamento dalla " + idSonda + ": livello di fumo = " + smokeLevel);
 		fireAlarmControl.triggerAlarm(idSonda, latitudine, longitudine, smokeLevel);
+
 		if (smokeLevel >= 10) {
 			System.out.println("Sonda allarmata: " + idSonda
 					+ " Livello mai registrato riunire tutte le forze, non è un esercitazione!");
