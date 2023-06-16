@@ -5,13 +5,13 @@ import java.util.List;
 
 import com.project.JAVAU2W3PROJECT.exceptions.CommunicationFailureException;
 import com.project.JAVAU2W3PROJECT.exceptions.SensorFailureException;
-import com.project.JAVAU2W3PROJECT.interfaces.GestioneCentroAssistenza;
+import com.project.JAVAU2W3PROJECT.interfaces.GestioneCentroControllo;
 import com.project.JAVAU2W3PROJECT.interfaces.ObserverSmokeControl;
 
 import lombok.Data;
 
 @Data
-public class SmokeDetector implements GestioneCentroAssistenza {
+public class SmokeDetector implements GestioneCentroControllo {
 	private List<ObserverSmokeControl> observers;
 	private double smokeLevel;
 
