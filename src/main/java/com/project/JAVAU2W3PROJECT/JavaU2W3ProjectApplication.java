@@ -8,7 +8,7 @@ import com.project.JAVAU2W3PROJECT.entities.Sonda;
 import com.project.JAVAU2W3PROJECT.exceptions.CommunicationFailureException;
 import com.project.JAVAU2W3PROJECT.exceptions.InvalidCoordinatesException;
 import com.project.JAVAU2W3PROJECT.exceptions.SensorFailureException;
-import com.project.JAVAU2W3PROJECT.factory.SmokeDetectorFactory;
+import com.project.JAVAU2W3PROJECT.factories.SmokeDetectorFactory;
 
 @SpringBootApplication
 public class JavaU2W3ProjectApplication {

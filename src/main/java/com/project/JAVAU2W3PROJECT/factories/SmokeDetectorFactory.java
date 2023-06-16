@@ -1,4 +1,4 @@
-package com.project.JAVAU2W3PROJECT.factory;
+package com.project.JAVAU2W3PROJECT.factories;
 
 import com.project.JAVAU2W3PROJECT.entities.SmokeDetector;
 
