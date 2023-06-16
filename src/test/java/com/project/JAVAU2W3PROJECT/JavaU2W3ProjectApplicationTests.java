@@ -2,12 +2,18 @@ package com.project.JAVAU2W3PROJECT;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.verify;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -21,6 +27,24 @@ import com.project.JAVAU2W3PROJECT.interfaces.ObserverSmokeControl;
 @SpringBootTest
 class JavaU2W3ProjectApplicationTests {
 	SmokeDetector smokeDetector = new SmokeDetector();
+	private final PrintStream standardOut = System.out;
+	private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
+
+	@BeforeEach
+	public void setUp() {
+		System.setOut(new PrintStream(outputStreamCaptor));
+	}
+
+	@AfterEach
+	public void tearDown() {
+		System.setOut(standardOut);
+	}
+
+	@Test
+	public void testMainMethodPrintsExpectedOutput() throws SensorFailureException, CommunicationFailureException {
+		JavaU2W3ProjectApplication.main(new String[] {});
+		assertTrue(outputStreamCaptor.toString().contains("Settaggio del livello di fumo a 3"));
+	}
 
 	@Test
 	public void testSetSmokeLevelThrowsExceptionWhenSmokeLevelIsInvalid() throws InvalidCoordinatesException {
