@@ -44,7 +44,7 @@ public class Sonda implements ObserverSmokeControl {
 		} else if (smokeLevel == 0) {
 			System.out.println("Sonda allarmata: Nessun segnale di fumo per ora alla " + idSonda);
 		} else if (smokeLevel <= 4) {
-			System.out.println("Sonda allarmata: " + idSonda + "Basso segnale di fumo ma rimanere in allerta!");
+			System.out.println("Sonda allarmata: " + idSonda + " Basso segnale di fumo ma rimanere in allerta!");
 		}
 
 	}
