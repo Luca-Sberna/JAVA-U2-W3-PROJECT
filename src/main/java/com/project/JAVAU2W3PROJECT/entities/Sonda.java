@@ -1,5 +1,7 @@
 package com.project.JAVAU2W3PROJECT.entities;
 
+import com.project.JAVAU2W3PROJECT.exceptions.CommunicationFailureException;
+import com.project.JAVAU2W3PROJECT.exceptions.InvalidCoordinatesException;
 import com.project.JAVAU2W3PROJECT.interfaces.FireAlarmControl;
 import com.project.JAVAU2W3PROJECT.interfaces.ObserverSmokeControl;
 import com.project.JAVAU2W3PROJECT.proxies.FireAlarmControlProxy;
@@ -14,7 +16,14 @@ public class Sonda implements ObserverSmokeControl {
 	private double longitudine;
 	private FireAlarmControl fireAlarmControl;
 
-	public Sonda(SmokeDetector smokeDetector, String idSonda, double latitudine, double longitudine) {
+	public Sonda(SmokeDetector smokeDetector, String idSonda, double latitudine, double longitudine)
+			throws InvalidCoordinatesException {
+
+		if (latitudine < -90 || latitudine > 90 || longitudine < -180 || longitudine > 180) {
+			throw new InvalidCoordinatesException(
+					"Coordinate non valide: latitudine = " + latitudine + ", longitudine = " + longitudine);
+		}
+
 		this.smokeDetector = smokeDetector;
 		this.idSonda = idSonda;
 		this.latitudine = latitudine;
@@ -23,7 +32,7 @@ public class Sonda implements ObserverSmokeControl {
 		smokeDetector.registerObserver(this);
 	}
 
-	public void update(double smokeLevel) {
+	public void update(double smokeLevel) throws CommunicationFailureException {
 		System.out.println("Ricevuto aggiornamento dalla " + idSonda + ": livello di fumo = " + smokeLevel);
 		fireAlarmControl.triggerAlarm(idSonda, latitudine, longitudine, smokeLevel);
 

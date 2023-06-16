@@ -3,6 +3,8 @@ package com.project.JAVAU2W3PROJECT.entities;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.project.JAVAU2W3PROJECT.exceptions.CommunicationFailureException;
+import com.project.JAVAU2W3PROJECT.exceptions.SensorFailureException;
 import com.project.JAVAU2W3PROJECT.interfaces.GestioneCentroAssistenza;
 import com.project.JAVAU2W3PROJECT.interfaces.ObserverSmokeControl;
 
@@ -29,13 +31,16 @@ public class SmokeDetector implements GestioneCentroAssistenza {
 	}
 
 	@Override
-	public void notifyObservers() {
+	public void notifyObservers() throws CommunicationFailureException {
 		for (ObserverSmokeControl observer : observers) {
 			observer.update(smokeLevel);
 		}
 	}
 
-	public void setSmokeLevel(double smokeLevel) {
+	public void setSmokeLevel(double smokeLevel) throws SensorFailureException, CommunicationFailureException {
+		if (smokeLevel < 0) {
+			throw new SensorFailureException("Livello di fumo non valido controllare sensore: " + smokeLevel);
+		}
 		this.smokeLevel = smokeLevel;
 		notifyObservers();
 	}

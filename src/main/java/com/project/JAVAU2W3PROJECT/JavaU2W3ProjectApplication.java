@@ -5,16 +5,24 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.project.JAVAU2W3PROJECT.entities.SmokeDetector;
 import com.project.JAVAU2W3PROJECT.entities.Sonda;
+import com.project.JAVAU2W3PROJECT.exceptions.CommunicationFailureException;
+import com.project.JAVAU2W3PROJECT.exceptions.InvalidCoordinatesException;
+import com.project.JAVAU2W3PROJECT.exceptions.SensorFailureException;
 import com.project.JAVAU2W3PROJECT.factory.SmokeDetectorFactory;
 
 @SpringBootApplication
 public class JavaU2W3ProjectApplication {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws SensorFailureException, CommunicationFailureException {
 		SpringApplication.run(JavaU2W3ProjectApplication.class, args);
 
 		SmokeDetector smokeDetector = SmokeDetectorFactory.createSmokeDetector();
-		Sonda sonda_1 = new Sonda(smokeDetector, "sonda_1", 45.4642, 9.1900);
+		try {
+			Sonda sonda_1 = new Sonda(smokeDetector, "sonda_1", 45.4642, 9.1900);
+		} catch (InvalidCoordinatesException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		System.out.println("");
 
