@@ -20,7 +20,6 @@ public class JavaU2W3ProjectApplication {
 		try {
 			Sonda sonda_1 = new Sonda(smokeDetector, "sonda_1", 45.4642, 9.1900);
 		} catch (InvalidCoordinatesException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 
@@ -38,6 +37,14 @@ public class JavaU2W3ProjectApplication {
 
 		System.out.println("Settaggio del livello di fumo a 10");
 		smokeDetector.setSmokeLevel(10);
+
+		System.out.println("");
+
+		System.out.println("Settaggio del livello di fumo a 0");
+		smokeDetector.setSmokeLevel(0);
+
+		System.out.println("");
+
 	}
 
 }
