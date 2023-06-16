@@ -76,4 +76,14 @@ class JavaU2W3ProjectApplicationTests {
 		smokeDetector.setSmokeLevel(sondaTest, 1);
 		verify(observer, never()).update(1);
 	}
+
+	@Test
+	public void testSondaConstructorSetsThePropertiesCorrectly() throws InvalidCoordinatesException {
+		Sonda sonda = new Sonda(smokeDetector, "sonda_test", 45.4642, 9.1900);
+		assertEquals(smokeDetector, sonda.getSmokeDetector());
+		assertEquals("sonda_test", sonda.getIdSonda());
+		assertEquals(45.4642, sonda.getLatitudine());
+		assertEquals(9.1900, sonda.getLongitudine());
+	}
+
 }
