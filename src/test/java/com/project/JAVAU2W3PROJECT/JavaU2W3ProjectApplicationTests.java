@@ -1,6 +1,7 @@
 package com.project.JAVAU2W3PROJECT;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.doThrow;
@@ -22,6 +23,7 @@ import com.project.JAVAU2W3PROJECT.entities.Sonda;
 import com.project.JAVAU2W3PROJECT.exceptions.CommunicationFailureException;
 import com.project.JAVAU2W3PROJECT.exceptions.InvalidCoordinatesException;
 import com.project.JAVAU2W3PROJECT.exceptions.SensorFailureException;
+import com.project.JAVAU2W3PROJECT.factories.SmokeDetectorFactory;
 import com.project.JAVAU2W3PROJECT.interfaces.ObserverSmokeControl;
 
 @SpringBootTest
@@ -61,6 +63,12 @@ class JavaU2W3ProjectApplicationTests {
 		smokeDetector.setSmokeLevel(sondaTest, 1);
 		assertEquals(1, smokeDetector.getSmokeLevel());
 		verify(observer).update(1);
+	}
+
+	@Test
+	public void testCreateSmokeDetectorReturnsAValidSmokeDetector() {
+		SmokeDetector smokeDetector = SmokeDetectorFactory.createSmokeDetector();
+		assertNotNull(smokeDetector);
 	}
 
 	@Test
